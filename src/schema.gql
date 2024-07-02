@@ -2,13 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
+type Course {
   id: String!
-  email: String!
-  phoneNumber: String!
-  password: String!
-  country: String!
-  instructor: Boolean!
+  user: User!
+  progress: [Progress!]!
+  name: String!
+  author: String!
+  lessons_count: Float!
   created_at: DateTime!
   updated_at: DateTime!
 }
@@ -18,6 +18,27 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Progress {
+  id: String!
+  user: User!
+  course: Course!
+  percentage_complete: Float!
+  last_updated: DateTime!
+}
+
+type User {
+  id: String!
+  email: String!
+  phoneNumber: String!
+  password: String!
+  country: String!
+  instructor: Boolean!
+  created_at: DateTime!
+  updated_at: DateTime!
+  courses: [Course!]!
+  progress: [Progress!]!
+}
+
 type AuthResponse {
   access_token: String!
 }
@@ -26,11 +47,13 @@ type Query {
   sayHello: String!
   getUser(id: String!): User!
   getAllUsers: [User!]!
+  getUserCourses: [Course!]!
 }
 
 type Mutation {
   register(createUserData: CreateUserDto!): User!
   login(authInput: AuthInput!): AuthResponse!
+  createCourse(createCourseInput: CreateCourseInput!, progress: Float!): Course!
 }
 
 input CreateUserDto {
@@ -44,4 +67,10 @@ input CreateUserDto {
 input AuthInput {
   email: String!
   password: String!
+}
+
+input CreateCourseInput {
+  name: String!
+  author: String!
+  lessons_count: Int!
 }
