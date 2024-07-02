@@ -13,3 +13,19 @@ export class CreateCourseInput {
 
     // Remove the progress field from CreateCourseInput
 }
+
+
+@InputType()
+export class UpdateCourseInput {
+    @Field({
+        nullable: true
+    })
+    name?: string;
+
+    @Field({ nullable: true })
+    author?: string;
+
+    @Field({ nullable: true })
+    lessons_count: number;
+
+}

@@ -14,7 +14,7 @@ export class Course {
     @Field(() => User)
     user: User;
 
-    @OneToMany(() => Progress, progress => progress.course)
+    @OneToMany(() => Progress, progress => progress.course, { cascade: true })
     @Field(() => [Progress])
     progress: Progress[];
 

@@ -54,6 +54,7 @@ type Mutation {
   register(createUserData: CreateUserDto!): User!
   login(authInput: AuthInput!): AuthResponse!
   createCourse(createCourseInput: CreateCourseInput!, progress: Float!): Course!
+  updateCourse(id: String!, updateCourseInput: UpdateCourseInput!, progress: Float): Course!
 }
 
 input CreateUserDto {
@@ -73,4 +74,10 @@ input CreateCourseInput {
   name: String!
   author: String!
   lessons_count: Int!
+}
+
+input UpdateCourseInput {
+  name: String
+  author: String
+  lessons_count: Float
 }
